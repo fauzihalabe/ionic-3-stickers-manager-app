@@ -33,7 +33,7 @@
             </ion-item>  
           </div>
 
-        <ion-item class="itemColecionador" *ngFor="let user of users | async; let i = index" >
+        <ion-item class="itemColecionador" *ngFor="let user of users; let i = index" >
           <ion-avatar item-start (click)="abrir(user)">
             <img [src]="user.foto">
           </ion-avatar>
@@ -50,7 +50,7 @@
       </ion-list>
 
       <ion-list *ngSwitchCase="'seguindo'">
-        <div *ngFor="let user of users | async; let i = index">
+        <div *ngFor="let user of users; let i = index">
           <ion-item *ngIf="seguindoVerificar(user)" class="itemColecionador">
             <ion-avatar item-start (click)="abrir(user)">
               <img [src]="user.foto">
@@ -68,7 +68,7 @@
       </ion-list>
 
       <ion-list *ngSwitchCase="'seguidores'">
-        <div *ngFor="let user of users | async; let i = index">
+        <div *ngFor="let user of users; let i = index">
           <ion-item *ngIf="seguidoresVerificar(user)" class="itemColecionador">
             <ion-avatar item-start (click)="abrir(user)">
               <img [src]="user.foto">

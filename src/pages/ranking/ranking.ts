@@ -12,7 +12,8 @@ import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 })
 export class RankingPage {
 
-  users: FirebaseListObservable<any[]>;
+  // users: FirebaseListObservable<any[]>;
+  users = [];
   perfilPage: PerfilPage;
   inputFiltro: any;
   uid;
@@ -44,20 +45,48 @@ export class RankingPage {
   }
 
   refresh(){
+    this.users = [];
+
     let loader = this.loadingCtrl.create({
-      duration: 3000
     });
     loader.present();
 
-    this.users = this.afDB.list('Usuarios', {
-      query: {
-        orderByChild: 'total'
+    let headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    //Request usuario
+    let url = 'https://app-album.firebaseio.com/Usuarios/.json';
+    this.http.get(url, { headers: headers }).subscribe(data => {
+      if(data != null){
+        Object.keys(data).forEach( key => {
+          // this.users.push(data[key]);
+          let obj = {$key: key, foto: data[key].foto, nome: data[key].nome, total: data[key].total}
+          this.users.push(obj);
+        });
       }
-    }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
+    },
+    err => {
+
+    },
+    () => {
+      loader.dismiss();
+      // console.log(this.users);
+      // console.log(this.users.sort());
+      this.users.sort(function(a, b) { 
+        return - ( a.total - b.total );
+      });
+    }
+  );
+
+    // this.users = this.afDB.list('Usuarios', {
+    //   query: {
+    //     orderByChild: 'total'
+    //   }
+    // }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
   }
 
   ionViewDidLoad() {
     this.tipo = 'todos';
+    this.filtroEvento();
   }
 
   filtroEvento(){
@@ -113,35 +142,57 @@ export class RankingPage {
 
   //Listar quem estou seguindo
   seguindo(){
+    // let headers = new HttpHeaders()
+    // .set('Content-Type', 'application/json')
+    // //Request usuario
+    // let url = 'https://app-album.firebaseio.com/Usuarios/' + this.uid + '/Seguindo.json';
+    // this.http.get(url, { headers: headers }).subscribe(data => {
+    //   if(data != null){
+    //     Object.keys(data).forEach( key => {
+    //       this.seguindoLista = [];
+    //       this.seguindoLista.push(data[key]);
+    //     });
+    //   }
+    // });
     let headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
-    //Request usuario
     let url = 'https://app-album.firebaseio.com/Usuarios/' + this.uid + '/Seguindo.json';
     this.http.get(url, { headers: headers }).subscribe(data => {
+      this.seguindoLista = [];
       if(data != null){
         Object.keys(data).forEach( key => {
-          this.seguindoLista = [];
           this.seguindoLista.push(data[key]);
         });
       }
-    });
+    })
   }
 
   //Listar quem está me seguindo
   seguidores(){
+    // let headers = new HttpHeaders()
+    // .set('Content-Type', 'application/json')
+    // //Request usuario
+    // let url = 'https://app-album.firebaseio.com/Usuarios/' + this.uid + '/Seguidores.json';
+    // this.http.get(url, { headers: headers }).subscribe(data => {
+    //   this.seguidoresLista = [];
+    //   if(data != null){
+    //     Object.keys(data).forEach( key => {
+    //       this.seguidoresLista.push(data[key]);
+    //       console.log(this.seguidoresLista);
+    //     });
+    //   }
+    // });
     let headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
-    //Request usuario
     let url = 'https://app-album.firebaseio.com/Usuarios/' + this.uid + '/Seguidores.json';
     this.http.get(url, { headers: headers }).subscribe(data => {
       this.seguidoresLista = [];
       if(data != null){
         Object.keys(data).forEach( key => {
           this.seguidoresLista.push(data[key]);
-          console.log(this.seguidoresLista);
         });
       }
-    });
+    })
   }
 
   seguindoVerificar(user){

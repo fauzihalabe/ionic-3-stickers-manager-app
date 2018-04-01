@@ -119,6 +119,9 @@ export class PerfilPage {
                 }
               }
             }
+            else {
+              loader.dismiss()
+            }
           });
         });
       }
@@ -155,10 +158,12 @@ export class PerfilPage {
     //Request usuario
     let url2 = 'https://app-album.firebaseio.com/Usuarios/' + val + '.json';
     this.http.get(url2, { headers: headers }).subscribe(data => {
-      if((JSON.parse(JSON.stringify(data)).total != null) && (JSON.parse(JSON.stringify(data)).total != undefined)){
-        this.user.nome = JSON.parse(JSON.stringify(data)).nome;
-        this.user.foto = JSON.parse(JSON.stringify(data)).foto;
-        this.totalFigurinhas = JSON.parse(JSON.stringify(data)).total;
+      if(data != null){
+        if((JSON.parse(JSON.stringify(data)).total != null) && (JSON.parse(JSON.stringify(data)).total != undefined)){
+          this.user.nome = JSON.parse(JSON.stringify(data)).nome;
+          this.user.foto = JSON.parse(JSON.stringify(data)).foto;
+          this.totalFigurinhas = JSON.parse(JSON.stringify(data)).total;
+        }
       }
     });
 
@@ -212,6 +217,9 @@ export class PerfilPage {
             this.figurinhasTem.push(this.figurinhas[a]);
           }
         }
+      }
+      else {
+        loader.dismiss()
       }
     });
   }
