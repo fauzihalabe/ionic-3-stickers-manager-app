@@ -1,0 +1,38 @@
+<ion-content padding>
+  <ion-grid style="margin-top: 20px">
+    <ion-col col-12 class="txt-right">
+      <h5 class="cancel" (click)="cancelar()">Cancelar</h5>
+    </ion-col>
+  </ion-grid>
+
+  <ion-item style="margin-top: 20px">  
+    <ion-label stacked>Dia</ion-label>
+    <ion-datetime placeholder="Selecione uma data" displayFormat="DD/MM/YYYY" pickerFormat="DD/MM/YYYY" [(ngModel)]="evento.dia"></ion-datetime>
+  </ion-item>
+
+  <ion-item style="margin-top: 20px">  
+    <ion-label stacked>Horário</ion-label>
+    <ion-datetime placeholder="Escolha um horário" displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="evento.horario"></ion-datetime>
+  </ion-item>
+
+
+  <ion-item style="margin-top: 20px">  
+    <ion-label stacked>Estado</ion-label>
+    <ion-input  placeholder="Em qual estado acontecerá o evento? Ex: SP" type="text" [(ngModel)]="evento.estado"></ion-input>
+  </ion-item>
+
+  <ion-item style="margin-top: 20px">  
+    <ion-label stacked>Cidade</ion-label>
+    <ion-input placeholder="Em qual cidade acontecerá o evento?" type="text" [(ngModel)]="evento.cidade"></ion-input>
+  </ion-item>
+
+  <ion-item style="margin-top: 20px">  
+    <ion-label stacked>Endereço</ion-label>
+    <ion-input placeholder="Endereço ou ponto de referência" type="text" [(ngModel)]="evento.endereco"></ion-input>
+  </ion-item>
+
+  <ion-item style="margin-top: 20px" (click)="criar()"> 
+    <button full ion-button round style="height: 50px"><span class="bold">Criar evento</span></button>
+  </ion-item>
+
+</ion-content>

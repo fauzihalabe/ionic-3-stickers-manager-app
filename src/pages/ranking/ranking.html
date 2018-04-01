@@ -1,0 +1,85 @@
+<ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <div class="center topmg">
+      <h3 style="color: #999">Ranking</h3>
+      <div style="height: 2px; width: 15%; background-color: #96131e; position: absolute; left: 42.5%"></div>
+      <h6 style="color: #999; margin-top: 30px">Os maiores colecionadores</h6>
+    </div>
+
+    <!-- TABS -->
+    <div padding>
+      <ion-segment [(ngModel)]="tipo">
+        <ion-segment-button value="todos" (click)="filtroEvento()">
+          Todos
+        </ion-segment-button>
+        <ion-segment-button value="seguindo">
+          Seguindo
+        </ion-segment-button>
+        <ion-segment-button value="seguidores">
+          Seguidores
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <div [ngSwitch]="tipo">
+      <ion-list *ngSwitchCase="'todos'">
+        <div style="padding: 0px 15px; margin-bottom: 20px">
+            <ion-item style="margin-top: 0px">
+              <ion-label style="font-size: 12px; margin-top: 0px" floating>Pesquisar</ion-label>
+              <ion-input class="filtro" style="font-size: 12px" type="text" [(ngModel)]="inputFiltro"></ion-input>
+            </ion-item>  
+          </div>
+
+        <ion-item class="itemColecionador" *ngFor="let user of users | async; let i = index" >
+          <ion-avatar item-start (click)="abrir(user)">
+            <img [src]="user.foto">
+          </ion-avatar>
+          <h2 (click)="abrir(user)">{{i + 1}} - {{user.nome}}</h2>
+          <p *ngIf="user.total != 682" (click)="abrir(user)">
+            <span *ngIf="user.total">{{user.total}}</span>  <span *ngIf="!user.total">0</span> coladas 
+          </p>
+          <p (click)="abrir(user)" *ngIf="user.total === 682">Álbum completo - <span> <ion-icon style="color:#96131e" name="ios-ribbon"></ion-icon></span></p>
+          <!-- SEGUIR/SEGUINDO -->
+          <button *ngIf="!seguindoVerificar(user) && user.$key != uid" ion-button round outline item-end style="text-transform: none" (click)="follow(user)">Seguir</button>
+          <button *ngIf="user.$key === uid" ion-button color="secondary" round item-end style="text-transform: none; padding-left: 10px; padding-right: 10px">Você</button>
+          <button *ngIf="seguindoVerificar(user) && user.$key != uid" ion-button round item-end style="text-transform: none" (click)="unfollow(user)">Seguindo</button>
+        </ion-item>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'seguindo'">
+        <div *ngFor="let user of users | async; let i = index">
+          <ion-item *ngIf="seguindoVerificar(user)" class="itemColecionador">
+            <ion-avatar item-start (click)="abrir(user)">
+              <img [src]="user.foto">
+            </ion-avatar>
+            <h2 (click)="abrir(user)">{{user.nome}}</h2>
+            <p *ngIf="user.total != 682" (click)="abrir(user)">
+              <span *ngIf="user.total">{{user.total}}</span>  <span *ngIf="!user.total">0</span> coladas 
+            </p>
+            <p (click)="abrir(user)" *ngIf="user.total === 682">Álbum completo - <span> <ion-icon style="color:#96131e" name="ios-ribbon"></ion-icon></span></p>
+            <!-- SEGUIR/SEGUINDO -->
+            <!-- <button ion-button round outline item-end style="text-transform: none" (click)="follow(user)">Seguir</button> -->
+            <button ion-button round item-end style="text-transform: none" (click)="unfollow(user)">Seguindo</button>
+          </ion-item>
+        </div>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'seguidores'">
+        <div *ngFor="let user of users | async; let i = index">
+          <ion-item *ngIf="seguidoresVerificar(user)" class="itemColecionador">
+            <ion-avatar item-start (click)="abrir(user)">
+              <img [src]="user.foto">
+            </ion-avatar>
+            <h2 (click)="abrir(user)">{{user.nome}}</h2>
+            <p *ngIf="user.total != 682" (click)="abrir(user)">
+              <span *ngIf="user.total">{{user.total}}</span>  <span *ngIf="!user.total">0</span> coladas 
+            </p>
+            <p (click)="abrir(user)" *ngIf="user.total === 682">Álbum completo - <span> <ion-icon style="color:#96131e" name="ios-ribbon"></ion-icon></span></p>
+          </ion-item>
+        </div>
+      </ion-list>
+    </div>
+</ion-content>

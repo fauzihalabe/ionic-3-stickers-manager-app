@@ -1,0 +1,63 @@
+<ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      
+  <div class="center topmg">
+    <h3 style="color: #999">Eventos</h3>
+    <div style="height: 2px; width: 15%; background-color: #96131e; position: absolute; left: 42.5%"></div>
+    <h6 style="color: #999; margin-top: 30px">Troca de figurinhas</h6>
+  </div>
+
+  <!-- TABS -->
+  <div padding style="margin-top: 50px">
+    <ion-segment [(ngModel)]="tipo">
+      <ion-segment-button value="tudo">
+        Todos
+      </ion-segment-button>
+      <ion-segment-button value="confirmados">
+        Confirmados
+      </ion-segment-button>
+      <ion-segment-button value="criados">
+        Criados
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="tipo" >
+    <ion-list   *ngSwitchCase="'tudo'">
+      <ion-item (click)="criar()">
+        <h2>Criar evento</h2>
+        <p>Convide seus amigos.</p>
+        <ion-icon name="ios-add-circle" style="color:#96131e" item-end></ion-icon>
+      </ion-item>
+  
+      <ion-item *ngFor="let evento of eventos | async" (click)="abrir(evento)">
+        <h2>{{evento.cidade}} - {{evento.estado}}</h2>
+        <p>{{evento.dia}} | {{evento.horario}}</p>
+        <ion-icon name="ios-eye" style="color:#96131e" item-end></ion-icon>
+      </ion-item>
+    </ion-list>
+
+    <ion-list  *ngSwitchCase="'confirmados'">
+      <div *ngFor="let evento of eventos | async">
+        <ion-item *ngIf="eventoConfirmado(evento)" (click)="abrir(evento)">
+          <h2>{{evento.cidade}} - {{evento.estado}}</h2>
+          <p>{{evento.dia}} | {{evento.horario}}</p>
+          <ion-icon name="ios-eye" style="color:#96131e" item-end></ion-icon>
+        </ion-item>
+      </div>
+    </ion-list>
+
+    <ion-list  *ngSwitchCase="'criados'">
+      <div *ngFor="let evento of eventos | async">
+        <ion-item *ngIf="evento.criador === uid" (click)="abrir(evento)">
+          <h2>{{evento.cidade}} - {{evento.estado}}</h2>
+          <p>{{evento.dia}} | {{evento.horario}}</p>
+          <ion-icon name="ios-eye" style="color:#96131e" item-end></ion-icon>
+        </ion-item>
+      </div>
+    </ion-list>
+  </div>
+
+</ion-content>

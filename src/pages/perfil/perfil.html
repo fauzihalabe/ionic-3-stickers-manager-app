@@ -1,0 +1,79 @@
+<ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      
+  <div class="center topmg" (click)="fechar()" *ngIf='visita'>
+    <h4 style="color: #999" class="bold">Fechar</h4>
+  </div>
+
+  <div class="center topmg2">
+    <div class="imgUser" [ngStyle]="{'background-image': 'url(' + user.foto + ')'}"></div>
+  </div>
+
+  <div class="center">
+    <h6 style="color: #999; margin-top: 140px" *ngIf="user">{{user.nome}}</h6>
+  </div>
+
+  <div class="center" *ngIf='!visita'>
+    <button ion-button icon-left style="text-transform: none" (click)="compartilhar()">
+      <ion-icon name="share-alt"></ion-icon>
+      Compartilhar perfil
+    </button>  
+  </div>
+
+  <!-- TABS -->
+  <div padding style="margin-top: 20px">
+    <ion-segment [(ngModel)]="tipo">
+      <ion-segment-button value="tudo">
+        Todas
+      </ion-segment-button>
+      <ion-segment-button value="faltam">
+        Faltando ({{figurinhasFaltam.length}})
+      </ion-segment-button>
+      <ion-segment-button value="repetidas">
+        Repetidas
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="tipo">
+    <ion-grid class="gridFigurinhas"  *ngSwitchCase="'tudo'">
+      <ion-row>
+        <ion-col col-2 *ngFor="let f of figurinhas" >
+          <div *ngIf="f.tem != 'sim'" class="center card-naotem">
+            <span class="num">{{f.numero}}</span>
+          </div>
+          <div *ngIf="f.tem === 'sim'" class="center card-tem">
+            <span class="num">{{f.numero}}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="gridFigurinhas"  *ngSwitchCase="'faltam'">
+      <ion-row>
+        <ion-col col-2 *ngFor="let f of figurinhasFaltam" >
+          <div class="center card-naotem">
+            <span class="num">{{f.numero}}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="gridFigurinhas"  *ngSwitchCase="'repetidas'">
+      <ion-row>
+        <ion-col col-2 *ngFor="let f of repetidas">
+          <div class="center card-rep">
+            <span class="num">{{f.num}}</span>
+            <br>
+            <br>
+            <span class="num" style="font-size: 10px">{{f.qnt}}<span class="num" style="font-size: 10px">x</span></span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+    
+</ion-content>
+  

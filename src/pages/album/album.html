@@ -1,0 +1,63 @@
+<ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      
+  <div class="center topmg">
+    <h3 style="color: #999">Meu álbum</h3>
+    <div style="height: 2px; width: 15%; background-color: #96131e; position: absolute; left: 42.5%"></div>
+    <h6 style="color: #999; margin-top: 30px">Toque duas vezes para marcar/desmarcar</h6>
+  </div>
+
+  <!-- TABS -->
+  <div padding>
+    <ion-segment [(ngModel)]="tipo">
+      <ion-segment-button value="tudo">
+        Todas
+      </ion-segment-button>
+      <ion-segment-button value="faltam">
+        Faltando ({{figurinhasFaltam.length}})
+      </ion-segment-button>
+      <ion-segment-button value="coladas">
+        Coladas ({{figurinhasTem.length}})
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="tipo">
+    <ion-grid class="gridFigurinhas"  *ngSwitchCase="'tudo'">
+      <ion-row>
+        <ion-col col-2 *ngFor="let f of figurinhas" (dblclick)="marcar(f)">
+          <div *ngIf="f.tem != 'sim'" class="center card-naotem">
+            <span class="num">{{f.numero}}</span>
+          </div>
+          <div *ngIf="f.tem === 'sim'" class="center card-tem">
+            <span class="num">{{f.numero}}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="gridFigurinhas"  *ngSwitchCase="'faltam'">
+      <ion-row>
+        <ion-col col-2 *ngFor="let f of figurinhasFaltam" (dblclick)="marcar(f)">
+          <div class="center card-naotem">
+            <span class="num">{{f.numero}}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid class="gridFigurinhas"  *ngSwitchCase="'coladas'">
+      <ion-row>
+        <ion-col col-2 *ngFor="let f of figurinhasTem" (dblclick)="marcar(f)">
+          <div class="center card-tem">
+            <span class="num">{{f.numero}}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  
+  </div>
+    
+</ion-content>

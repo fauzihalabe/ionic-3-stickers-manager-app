@@ -1,0 +1,39 @@
+// Custom font
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,400i,700');
+
+//Definir font para todo app
+* {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.bold {
+    font-weight: 700
+}
+
+.italic {
+    font-style: italic 
+}
+
+.light {
+    font-weight: 300
+}
+
+.center {
+    text-align: center
+}
+
+.white {
+    color: #fff
+}
+
+.blue-bg {
+    background-color: #00366e
+}
+
+h2 {
+    margin-top: 0px !important
+}
+
+ion-segment-button {
+    font-size: 10px !important
+}

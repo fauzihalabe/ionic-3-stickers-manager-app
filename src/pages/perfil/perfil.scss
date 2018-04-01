@@ -1,0 +1,59 @@
+page-perfil {
+    .card-tem {
+        border: 2px solid #96131e;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        background-image: url('../assets/imgs/pattern-red.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .card-naotem {
+        border: 2px solid #999;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        background-image: url('../assets/imgs/pattern-g.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .card-rep {
+        border: 2px solid #96131e;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        background-image: url('../assets/imgs/pattern-red.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .num {
+        color: #fff;
+        font-weight: 700
+    }
+
+    .gridFigurinhas {
+        margin-top: 20px
+    }
+
+    .topmg {
+        margin-top: 40px;
+        position: relative
+    }
+
+    .topmg2 {
+        margin-top: 20px;
+        position: relative
+    }
+
+    .imgUser {
+        width: 100px;
+        height: 100px;
+        background-color: #96131e;
+        border: 3px solid #96131e;
+        border-radius: 100px;
+        background-position: center center;
+        background-size: cover;
+        position: absolute;
+        left: calc(50% - 50px)
+    }
+}
