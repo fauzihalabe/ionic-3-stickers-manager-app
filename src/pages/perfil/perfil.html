@@ -7,8 +7,17 @@
     <h4 style="color: #999" class="bold">Fechar</h4>
   </div>
 
+  <!-- CHAT BTN -->
+  <ion-fab right bottom *ngIf="visita">
+    <button (click)="chat()" ion-fab color="secondary"><ion-icon name="ios-chatbubbles"></ion-icon></button>
+  </ion-fab>
+  <ion-fab right bottom *ngIf="!visita">
+    <button (click)="conversas()" ion-fab color="secondary"><ion-icon name="ios-chatbubbles"></ion-icon></button>
+  </ion-fab>
+
   <div class="center topmg2">
-    <div class="imgUser" [ngStyle]="{'background-image': 'url(' + user.foto + ')'}"></div>
+    <div *ngIf="user.foto" class="imgUser" (click)="imagem()" [ngStyle]="{'background-image': 'url(' + user.foto + ')'}"></div>
+    <div *ngIf="!user.foto" class="imgUser" (click)="imagem()" [ngStyle]="{'background-image': 'url(' + avatar + ')'}"></div>
   </div>
 
   <div class="center">
@@ -20,6 +29,8 @@
       <ion-icon name="share-alt"></ion-icon>
       Compartilhar perfil
     </button>  
+    <h6 style="color: #96131e" (click)="logout()">Logout</h6>
+
   </div>
 
   <!-- TABS -->

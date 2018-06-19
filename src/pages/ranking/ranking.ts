@@ -20,6 +20,7 @@ export class RankingPage {
   seguindoLista = [];
   seguidoresLista = [];
   tipo: any;;
+  avatar = 'https://firebasestorage.googleapis.com/v0/b/app-album.appspot.com/o/world-cup-2018-mascot0052-450x303.gif?alt=media&token=6798733f-da01-4c22-a6b8-562a61225a70';
 
   constructor(
     public navCtrl: NavController, 
@@ -35,12 +36,11 @@ export class RankingPage {
   }
 
   doRefresh(refresher) {
-      this.refresh();
+      this.navCtrl.setRoot(this.navCtrl.getActive().component);
       //Dismiss refresh
       setTimeout(() => {
-        this.navCtrl.setRoot(this.navCtrl.getActive().component);
-        // refresher.complete();
-      }, 3000)
+        refresher.complete();
+      }, 1000)
       
   }
 
@@ -58,9 +58,8 @@ export class RankingPage {
     this.http.get(url, { headers: headers }).subscribe(data => {
       if(data != null){
         Object.keys(data).forEach( key => {
-          // this.users.push(data[key]);
-          let obj = {$key: key, foto: data[key].foto, nome: data[key].nome, total: data[key].total}
-          this.users.push(obj);
+            let obj = {$key: key, foto: data[key].foto, nome: data[key].nome, total: data[key].total, check: 'no'}
+            this.users.push(obj)
         });
       }
     },
@@ -69,19 +68,11 @@ export class RankingPage {
     },
     () => {
       loader.dismiss();
-      // console.log(this.users);
-      // console.log(this.users.sort());
       this.users.sort(function(a, b) { 
         return - ( a.total - b.total );
       });
     }
   );
-
-    // this.users = this.afDB.list('Usuarios', {
-    //   query: {
-    //     orderByChild: 'total'
-    //   }
-    // }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
   }
 
   ionViewDidLoad() {

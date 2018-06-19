@@ -1,0 +1,45 @@
+<ion-header color="secondary">
+
+  <ion-navbar>
+    <span  style="position: absolute; right: 20px; top: 40%">
+      <span>{{friendInfo.nome}}</span>
+    </span>
+
+    <span (click)="fechar()" style="position: absolute; left: 20px; top: 40%">
+        <span ><ion-icon style="color: #a91723" name="md-backspace"></ion-icon></span>
+      </span>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngFor="let m of mensagens | async">
+    <div *ngIf="m.currentUser != currentUser" class="container friend">
+      <img onError="this.src = 'https://firebasestorage.googleapis.com/v0/b/app-album.appspot.com/o/default-user-icon.png?alt=media&token=a9e8d537-eafa-45d5-b0d0-c979a6c172f1'" [src]="friendInfo.foto" alt="Avatar">
+      <div style="white-space: pre-line" [innerHTML]="m.mensagem" style="margin-bottom: 15px"></div>
+      <span class="time-right">{{m.data | date:'dd/MM/yyyy HH:mm' }}</span>
+    </div>
+    
+    <div  *ngIf="m.currentUser === currentUser" class="container darker">
+      <div style="white-space: pre-line" [innerHTML]="m.mensagem" style="margin-bottom: 15px"></div>
+      <span class="time-left">{{m.data | date:'dd/MM/yyyy HH:mm' }}</span>
+    </div>
+  </div>
+  
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="no-pad">
+      <ion-col col-10 class="no-pad">
+        <ion-textarea [(ngModel)]="mensagem" type="text" placeholder="Digite sua mensagem aqui"></ion-textarea>
+      </ion-col>
+      <ion-col col-2 class="no-pad">
+        <button (click)="sendMessage()" ion-button icon-only clear>
+          <ion-icon style="font-size: 35px" color="secondary" name="ios-arrow-dropright-circle"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

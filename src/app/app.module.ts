@@ -16,6 +16,9 @@ import { EventosPage } from '../pages/eventos/eventos';
 import { EventoPage } from '../pages/evento/evento';
 import { NovoEventoPage } from '../pages/novo-evento/novo-evento';
 import { RepetidasPage } from '../pages/repetidas/repetidas';
+import { ChatPage } from '../pages/chat/chat';
+import { ContaPage } from '../pages/conta/conta';
+import { MensagensPage } from '../pages/mensagens/mensagens';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,6 +42,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { Facebook } from '@ionic-native/facebook';
 import { IonicStorageModule } from '@ionic/storage';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { FCM } from '@ionic-native/fcm';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -54,7 +59,10 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     EventosPage,
     NovoEventoPage,
     EventoPage,
-    RepetidasPage
+    RepetidasPage,
+    ChatPage,
+    MensagensPage,
+    ContaPage
   ],
   imports: [
     BrowserModule,
@@ -78,9 +86,14 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     EventosPage,
     NovoEventoPage,
     EventoPage,
-    RepetidasPage
+    RepetidasPage,
+    ChatPage,
+    MensagensPage,
+    ContaPage
   ],
   providers: [
+    Camera,
+    FCM,
     SocialSharing,
     AngularFireAuth,
     Facebook,    

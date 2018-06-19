@@ -9,6 +9,9 @@ import { LoginPage } from '../pages/login/login';
 import { Storage } from '@ionic/storage';
 import { PerfilPage } from '../pages/perfil/perfil';
 import { EventoPage } from '../pages/evento/evento';
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
+import { FCM } from '@ionic-native/fcm';
 
 declare var Branch;
 @Component({
@@ -19,11 +22,20 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private storage: Storage, public modalCtrl: ModalController) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private storage: Storage, public modalCtrl: ModalController, private fcm: FCM,  private afDB: AngularFireDatabase) {
     
     this.storage.get('logadoAlbum').then((val) => {
       if(val === 'sim') {
         this.rootPage = TabsPage;
+
+        this.storage.get('uid').then((uid) => {
+          //FCM
+          this.fcm.getToken().then(token => {
+          this.afDB.object('Tokens/' + uid + '/' + token).set({
+            fcmToken: token
+          });
+        })
+      });
       }
       else {
         this.rootPage = LoginPage;

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "619285745305",
+    "firebase_url": "https://app-album.firebaseio.com",
+    "project_id": "app-album",
+    "storage_bucket": "app-album.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619285745305:android:32768f98a4d78a93",
+        "android_client_info": {
+          "package_name": "com.br.sunshine.albumcopadomundo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619285745305-7q3dur57j8bcjfd1ded6rp9osp1q5jua.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.br.sunshine.albumcopadomundo",
+            "certificate_hash": "27af4ebce617e21bab6fc8b1b6da03ddf2d46d96"
+          }
+        },
+        {
+          "client_id": "619285745305-qjniesto6vo1subfirc38f45d698eku7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd5FJMtHDZtdeQfntAWT3TYaLs1FHMQZA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619285745305-qjniesto6vo1subfirc38f45d698eku7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

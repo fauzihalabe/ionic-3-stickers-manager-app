@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.br.sunshine.albumcopadomundo" version="0.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Sticker Manager</name>
+<widget id="com.br.sunshine.albumcopadomundo" version="0.0.12" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Stickers Manager</name>
     <description>Rede social para colecionadores.</description>
     <author email="fauzihalabe@gmail.com">Fauzi Halabe</author>
     <content src="index.html" />
@@ -77,26 +77,29 @@
         <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
-    <plugin name="cordova-plugin-device" spec="^2.0.1" />
-    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
-    <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
-    <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
-        <variable name="APP_ID" value="152919628723141" />
-        <variable name="APP_NAME" value="Figurinhas" />
-    </plugin>
     <allow-navigation href="http://192.168.15.9:8100" />
-    <plugin name="cordova-sqlite-storage" spec="^2.3.0" />
     <allow-navigation href="http://192.168.15.9:8101" />
-    <plugin name="cordova-plugin-x-socialsharing" spec="^5.3.2" />
     <branch-config>
         <branch-key value="key_live_cntZklX2YRcCwzqKlVu6ppddBEaRnKbP" />
         <uri-scheme value="stickermanager" />
         <link-domain value="cordova.app.link" />
         <ios-team-release value="PW4Q8885U7" />
     </branch-config>
+    <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
+        <variable name="APP_ID" value="152919628723141" />
+        <variable name="APP_NAME" value="Album 2018 - Copa do Mundo" />
+    </plugin>
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
+    <plugin name="cordova-plugin-device" spec="^2.0.1" />
+    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
+    <plugin name="cordova-plugin-ionic-webview" spec="^1.1.16" />
+    <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+    <plugin name="cordova-sqlite-storage" spec="^2.3.0" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="^5.3.2" />
     <plugin name="branch-cordova-sdk" spec="^2.6.24" />
-    <engine name="ios" spec="4.5.4" />
+    <plugin name="cordova-plugin-fcm" spec="^2.1.2" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.2" />
+    <allow-navigation href="http://192.168.0.102:8100" />
+    <engine name="ios" spec="^4.5.4" />
     <engine name="android" spec="6.4.0" />
 </widget>

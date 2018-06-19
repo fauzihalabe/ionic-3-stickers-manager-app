@@ -35,7 +35,7 @@
 
         <ion-item class="itemColecionador" *ngFor="let user of users; let i = index" >
           <ion-avatar item-start (click)="abrir(user)">
-            <img [src]="user.foto">
+            <img onError="this.src = 'https://firebasestorage.googleapis.com/v0/b/app-album.appspot.com/o/default-user-icon.png?alt=media&token=a9e8d537-eafa-45d5-b0d0-c979a6c172f1'" [src]="user.foto">
           </ion-avatar>
           <h2 (click)="abrir(user)">{{i + 1}} - {{user.nome}}</h2>
           <p *ngIf="user.total != 682" (click)="abrir(user)">

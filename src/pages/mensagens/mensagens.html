@@ -1,0 +1,35 @@
+<ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <div class="center topmg" (click)="fechar()">
+        <h6 style="color: #999" class="bold">Voltar</h6>
+      </div>
+
+    <div class="center topmg">
+      <h3 style="color: #999">Mensagens</h3>
+      <div style="height: 2px; width: 15%; background-color: #96131e; position: absolute; left: 42.5%"></div>
+      <h6 style="color: #999; margin-top: 30px">Sua caixa de conversas</h6>
+    </div>
+
+
+      <ion-list>
+        <div *ngFor="let user of users; let i = index">
+          <ion-item *ngIf="verificar(user)" class="itemColecionador">
+            <ion-avatar item-start (click)="abrir(user)">
+                <img onError="this.src = 'https://firebasestorage.googleapis.com/v0/b/app-album.appspot.com/o/default-user-icon.png?alt=media&token=a9e8d537-eafa-45d5-b0d0-c979a6c172f1'" [src]="user.foto">
+              </ion-avatar>
+            <h2 (click)="abrir(user)">{{user.nome}}</h2>
+            <p *ngIf="user.total != 682" (click)="abrir(user)">
+              <span *ngIf="user.total">{{user.total}}</span>  <span *ngIf="!user.total">0</span> coladas 
+            </p>
+            <p (click)="abrir(user)" *ngIf="user.total === 682">Álbum completo - <span> <ion-icon style="color:#96131e" name="ios-ribbon"></ion-icon></span></p>
+            <!-- SEGUIR/SEGUINDO -->
+            <!-- <button ion-button round outline item-end style="text-transform: none" (click)="follow(user)">Seguir</button> -->
+            <!-- <button ion-button round item-end style="text-transform: none" (click)="unfollow(user)">Seguindo</button> -->
+          </ion-item>
+        </div>
+      </ion-list>
+   
+</ion-content>

@@ -7,9 +7,9 @@
   "scripts": {
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint",
     "ionic:build": "ionic-app-scripts build",
-    "ionic:serve": "ionic-app-scripts serve"
+    "ionic:serve": "ionic-app-scripts serve",
+    "tsc:w": "tsc -w --noStrictGenericChecks"
   },
   "dependencies": {
     "@angular/animations": "5.2.9",
@@ -21,8 +21,10 @@
     "@angular/http": "5.2.9",
     "@angular/platform-browser": "5.2.9",
     "@angular/platform-browser-dynamic": "5.2.9",
+    "@ionic-native/camera": "^4.6.0",
     "@ionic-native/core": "4.6.0",
     "@ionic-native/facebook": "^4.6.0",
+    "@ionic-native/fcm": "^4.6.0",
     "@ionic-native/social-sharing": "^4.6.0",
     "@ionic-native/splash-screen": "4.6.0",
     "@ionic-native/status-bar": "4.6.0",
@@ -30,9 +32,11 @@
     "angularfire2": "^4.0.0-rc.2",
     "branch-cordova-sdk": "^2.6.24",
     "cordova-android": "6.4.0",
-    "cordova-ios": "4.5.4",
+    "cordova-ios": "^4.5.4",
+    "cordova-plugin-camera": "^4.0.2",
     "cordova-plugin-device": "^2.0.1",
     "cordova-plugin-facebook4": "^1.9.1",
+    "cordova-plugin-fcm": "^2.1.2",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.16",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -50,7 +54,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.8",
-    "typescript": "~2.6.2"
+    "typescript": "^2.4"
   },
   "description": "An Ionic project",
   "cordova": {
@@ -66,7 +70,9 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-sqlite-storage": {},
       "cordova-plugin-x-socialsharing": {},
-      "branch-cordova-sdk": {}
+      "branch-cordova-sdk": {},
+      "cordova-plugin-fcm": {},
+      "cordova-plugin-camera": {}
     },
     "platforms": [
       "ios",

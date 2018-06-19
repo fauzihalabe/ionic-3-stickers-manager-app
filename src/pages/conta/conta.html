@@ -1,0 +1,52 @@
+<ion-content padding>
+  <div *ngIf="!entrar">
+    <div class="center topmg">
+      <h3 style="color: #999">Nova conta</h3>
+      <div style="height: 2px; width: 15%; background-color: #96131e; position: absolute; left: 42.5%"></div>
+      <h6 style="color: #999; margin-top: 30px" (click)="mudar()">Se já tiver uma conta, clique aqui.</h6>
+    </div>
+
+    
+    <ion-item style="margin-top: 30px">
+      <ion-label fixed>Nome</ion-label>
+      <ion-input [(ngModel)]="conta.name" type="text" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Seu e-mail</ion-label>
+      <ion-input [(ngModel)]="conta.email" type="email" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label fixed>Senha</ion-label>
+      <ion-input [(ngModel)]="conta.senha" placeholder="Mín. 6 caracteres" type="password" value=""></ion-input>
+    </ion-item>
+
+    <ion-item style="border: none !important">
+      <button ion-button block outline round style="text-transform: none" (click)="criar()">Criar conta</button>
+    </ion-item>
+  </div>
+
+  <div *ngIf="entrar">
+      <div class="center topmg">
+        <h3 style="color: #999">Entrar</h3>
+        <div style="height: 2px; width: 15%; background-color: #96131e; position: absolute; left: 42.5%"></div>
+        <h6 style="color: #999; margin-top: 30px" (click)="mudar()">Se quiser criar uma conta, clique aqui.</h6>
+      </div>
+  
+      
+      <ion-item style="margin-top: 30px">
+        <ion-label fixed>E-mail</ion-label>
+        <ion-input [(ngModel)]="login.email" type="email" value=""></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label fixed>Senha</ion-label>
+        <ion-input [(ngModel)]="login.senha" type="password" value=""></ion-input>
+      </ion-item>
+
+      <ion-item style="border: none !important">
+          <button ion-button block outline round style="text-transform: none" (click)="fazerLogin()">Entrar</button>
+        </ion-item>
+    </div>
+</ion-content>
